@@ -18,7 +18,7 @@ describe("unescapeLinePart", () => {
     expect(unescapeLinePart("a \\C b")).toEqual("a , b")
   })
 
-  test.skip("handles escaped backslahes and commas next to each other", () => {
+  test("handles escaped backslahes and commas next to each other", () => {
     expect(unescapeLinePart("a \\\\\\C b \\C\\\\ c")).toEqual("a \\, b ,\\ c")
   })
 })

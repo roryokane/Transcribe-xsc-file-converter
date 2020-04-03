@@ -7,11 +7,38 @@ export function splitLineIntoParts(line: string): Array<string> {
   return split.map(unescapeLinePart)
 }
 
-// interpret `\\` as `\`
-// interpret `\C` (with a non-escaped backslash) as `,`
-// FIXME this implementation fails to convert `\\\C` to `\,`
+// Return a string with only the following changes:
+// - interpret `\\` as `\`
+// - interpret `\C` (with a non-escaped backslash) as `,`
 export function unescapeLinePart(linePart: string): string {
-  return linePart.replace(/(?<!\\)\\C/g, ",").replace(/\\\\/g, "\\")
+  // Performance note: using repeated .push on Array followed by .join because I assume it is faster than repeated += on string. I did not benchmark to confirm that assumption.
+  const escapedChars: Array<string> = []
+  let nextCharIsEscape = false
+
+  for (const char of linePart) {
+    if (nextCharIsEscape) {
+      if (char === "\\") {
+        escapedChars.push("\\")
+      } else if (char === "C") {
+        escapedChars.push(",")
+      } else {
+        throw new Error("couldn’t interpret unknown escape sequence within '" + linePart + "'")
+      }
+      nextCharIsEscape = false
+    } else if (char === "\\") {
+      nextCharIsEscape = true
+    } else {
+      escapedChars.push(char)
+    }
+  }
+
+  if (nextCharIsEscape) {
+    throw new Error(
+      "couldn’t interpret line part ending in an escaping ‘\\’ with no following character: '" + linePart + "'"
+    )
+  }
+
+  return escapedChars.join("")
 }
 
 export function getKeyOfLine(line: string): string {
