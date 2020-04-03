@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the file ‘Windows ME Startup.xsc’ can be parsed 1`] = `
+Object {
+  "markers": Object {
+    "autonumbering": Object {
+      "autoSectionBool": false,
+      "numberContinuously": true,
+    },
+    "list": Array [
+      Object {
+        "label": Object {
+          "label": "A1",
+          "labelIsAutoNamed": true,
+        },
+        "markerType": Object {
+          "name": "section",
+          "relativeScope": 3,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 0.167,
+          "string": "0:00:00.167",
+        },
+      },
+      Object {
+        "label": null,
+        "markerType": Object {
+          "name": "beat",
+          "relativeScope": 1,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 1.039,
+          "string": "0:00:01.039",
+        },
+      },
+      Object {
+        "label": Object {
+          "label": "A2",
+          "labelIsAutoNamed": true,
+        },
+        "markerType": Object {
+          "name": "measure",
+          "relativeScope": 2,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 1.961,
+          "string": "0:00:01.961",
+        },
+      },
+      Object {
+        "label": null,
+        "markerType": Object {
+          "name": "beat",
+          "relativeScope": 1,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 2.678,
+          "string": "0:00:02.678",
+        },
+      },
+      Object {
+        "label": null,
+        "markerType": Object {
+          "name": "beat",
+          "relativeScope": 1,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 3.343,
+          "string": "0:00:03.343",
+        },
+      },
+      Object {
+        "label": null,
+        "markerType": Object {
+          "name": "beat",
+          "relativeScope": 1,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 4,
+          "string": "0:00:04.000",
+        },
+      },
+      Object {
+        "label": null,
+        "markerType": Object {
+          "name": "beat",
+          "relativeScope": 1,
+        },
+        "numSubdivisionsBetweenThisAndNextMarker": Object {
+          "type": "same_as_previous_marker",
+        },
+        "timestamp": Object {
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 4.637,
+          "string": "0:00:04.637",
+        },
+      },
+    ],
+  },
+  "soundFile": Object {
+    "audioDurationInSeconds": "5.511837",
+    "filePath": "/Users/roryokane/Music/iTunes/iTunes Music/Music/Unknown Artist/Unknown Album/Windows ME Startup.mp3",
+    "filename": "Windows ME Startup.mp3",
+  },
+}
+`;

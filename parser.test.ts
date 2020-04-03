@@ -1,7 +1,8 @@
-import { initialParseState } from "./parser"
+import { initialParseState, parse } from "./parser"
 import { lineHandlers } from "./line_handlers"
+import { readAllOfAFile } from "./io_utils"
 
-test("handleMarker", () => {
+test("a B line can be parsed", () => {
   const initialState = { ...initialParseState, currentSection: "Markers" }
   const newState = lineHandlers.B("B,176400,1,,0,0:00:04.000", initialState)
   expect(newState.data.markers.list).toEqual([
@@ -24,4 +25,8 @@ test("handleMarker", () => {
   ])
 })
 
-// TODO write fixture test
+test("the file ‘Windows ME Startup.xsc’ can be parsed", async () => {
+  const fileContents = await readAllOfAFile("tests/relatively few markers/Windows ME Startup.xsc")
+  const parsed = parse(fileContents)
+  expect(parsed).toMatchSnapshot()
+})

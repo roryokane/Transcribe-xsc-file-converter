@@ -14,7 +14,7 @@ function readAllOfStdin(): Promise<string> {
   return readStreamContents(process.stdin)
 }
 
-async function readAllOfAFile(filePath: string): Promise<string> {
+export async function readAllOfAFile(filePath: string): Promise<string> {
   try {
     const testFileBuffer = await readFile(filePath)
     return testFileBuffer.toString()
