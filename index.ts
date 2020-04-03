@@ -1,4 +1,4 @@
-import { parse } from "./parser"
+import { parse } from "./parsing/parser"
 import { readAllFromSource, InputSource } from "./io_utils"
 
 function chooseInputSource(argv: Array<string>): InputSource {

@@ -1,6 +1,6 @@
 import { initialParseState, parse } from "./parser"
 import { lineHandlers } from "./line_handlers"
-import { readAllOfAFile } from "./io_utils"
+import { readAllOfAFile } from "../io_utils"
 
 test("a B line can be parsed", () => {
   const initialState = { ...initialParseState, currentSection: "Markers" }
