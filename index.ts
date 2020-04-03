@@ -2,7 +2,7 @@ import { parse } from "./parsing/parser"
 import { readAllFromSource, InputSource } from "./io_utils"
 
 function chooseInputSource(argv: Array<string>): InputSource {
-  if (argv.length === 0 || argv[0] === '--') {
+  if (argv.length === 0 || argv[0] === "-") {
     return { type: "stdin" }
   } else {
     const filePath = argv[0]
