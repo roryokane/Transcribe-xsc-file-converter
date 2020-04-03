@@ -1,0 +1,30 @@
+{
+  "name": "transcribe-xsc-file-converter",
+  "version": "1.0.0",
+  "description": "Convert Transcribe! v7 .xsc files (which contain annotations of music) to a readable JSON format",
+  "keywords": [
+    "transcribe",
+    "Seventh String",
+    "audio",
+    "music",
+    "convert",
+    "file conversion"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "ts-node parser.test.ts"
+  },
+  "author": "Rory O’Kane",
+  "license": "BlueOak-1.0.0",
+  "dependencies": {
+    "immer": "^6.0.2"
+  },
+  "_commented_out_type": "module",
+  "devDependencies": {
+    "@types/node": "^13.9.5",
+    "baretest": "^1.0.0",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
+  }
+}
