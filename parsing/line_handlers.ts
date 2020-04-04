@@ -67,6 +67,8 @@ function handleMarkerNumberContinuously(line: string, currentState: ParseState):
 
   return produce(currentState, draftState => {
     draftState.data.markers.autonumbering.numberContinuously = numberContinuously
+    // TODO explain better
+    // Is this about resuming numbering after custom labels? [A1, second, A3] vs. [A1, second, A2]?
   })
 }
 
@@ -74,22 +76,33 @@ function handleMarkerAutoSection(line: string, currentState: ParseState): ParseS
   assertCurrentSection("Main", currentState)
 
   const [_key, autoSectionStr] = splitLineIntoParts(line)
-  const autoSectionBool = Boolean(parseInt(autoSectionStr, 10))
+  const autonumberSections = !Boolean(parseInt(autoSectionStr, 10)) // 0 means true for this field
 
-  return produce(currentState, draftState => {
-    draftState.data.markers.autonumbering.autoSectionBool = autoSectionBool
-    // TODO describe this data better
+  return produce(currentState, (draftState) => {
+    draftState.data.markers.autonumbering.byMarkerType.section = autonumberSections
   })
 }
 
 function handleMarkerAutoMeasure(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
-  return currentState // TODO
+
+  const [_key, autoMeasureStr] = splitLineIntoParts(line)
+  const autonumberMeasures = !Boolean(parseInt(autoMeasureStr, 10)) // 0 means true for this field
+
+  return produce(currentState, (draftState) => {
+    draftState.data.markers.autonumbering.byMarkerType.measure = autonumberMeasures
+  })
 }
 
 function handleMarkerAutoBeat(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
-  return currentState // TODO
+
+  const [_key, autoBeatStr] = splitLineIntoParts(line)
+  const autonumberBeats = !Boolean(parseInt(autoBeatStr, 10)) // 0 means true for this field
+
+  return produce(currentState, (draftState) => {
+    draftState.data.markers.autonumbering.byMarkerType.beat = autonumberBeats
+  })
 }
 
 // only used in handleMarker

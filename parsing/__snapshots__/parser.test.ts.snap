@@ -4,7 +4,11 @@ exports[`the file ‘Windows ME Startup.xsc’ can be parsed 1`] = `
 Object {
   "markers": Object {
     "autonumbering": Object {
-      "autoSectionBool": false,
+      "byMarkerType": Object {
+        "beat": false,
+        "measure": true,
+        "section": true,
+      },
       "numberContinuously": true,
     },
     "list": Array [

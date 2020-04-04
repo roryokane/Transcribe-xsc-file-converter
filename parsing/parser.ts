@@ -9,7 +9,7 @@ const initialParseState = {
     soundFile: {},
     markers: {
       list: [],
-      autonumbering: {},
+      autonumbering: { byMarkerType: {} },
     },
   },
   currentSection: null,
