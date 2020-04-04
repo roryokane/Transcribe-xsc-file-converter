@@ -6,7 +6,7 @@ import { MarkerType, NumSubdividionsData, LabelInfo, ParseState } from "./parse_
 
 function handleSectionStart(line: string, currentState: ParseState): ParseState {
   const [_key, sectionName] = splitLineIntoParts(line)
-  return produce(currentState, draftState => {
+  return produce(currentState, (draftState) => {
     draftState.currentSection = sectionName
   })
 }
@@ -14,7 +14,7 @@ function handleSectionStart(line: string, currentState: ParseState): ParseState 
 function handleSectionEnd(line: string, currentState: ParseState): ParseState {
   const [_key, sectionName] = splitLineIntoParts(line)
   if (currentState.currentSection === sectionName) {
-    return produce(currentState, draftState => {
+    return produce(currentState, (draftState) => {
       draftState.currentSection = null
     })
   } else {
@@ -35,7 +35,7 @@ function handleSoundFileName(line: string, currentState: ParseState): ParseState
 
   const [_key, filename, _operatingSystemForSomeReason, filePath] = splitLineIntoParts(line)
 
-  return produce(currentState, draftState => {
+  return produce(currentState, (draftState) => {
     draftState.data.soundFile.filename = filename
     draftState.data.soundFile.filePath = filePath
   })
@@ -54,7 +54,7 @@ function handleSoundFileInfo(line: string, currentState: ParseState): ParseState
     audioDurationInSeconds,
   ] = splitLineIntoParts(line)
 
-  return produce(currentState, draftState => {
+  return produce(currentState, (draftState) => {
     draftState.data.soundFile.audioDurationInSeconds = audioDurationInSeconds
   })
 }
@@ -65,7 +65,7 @@ function handleMarkerNumberContinuously(line: string, currentState: ParseState):
   const [_key, numberContinuouslyNumStr] = splitLineIntoParts(line)
   const numberContinuously = Boolean(parseInt(numberContinuouslyNumStr, 10))
 
-  return produce(currentState, draftState => {
+  return produce(currentState, (draftState) => {
     draftState.data.markers.autonumbering.numberContinuously = numberContinuously
     // TODO explain better
     // Is this about resuming numbering after custom labels? [A1, second, A3] vs. [A1, second, A2]?
@@ -170,7 +170,7 @@ function handleMarker(line: string, currentState: ParseState): ParseState {
 
   assertCurrentSection("Markers", currentState)
 
-  return produce(currentState, draftState => {
+  return produce(currentState, (draftState) => {
     draftState.data.markers.list.push({
       timestamp: timestampToObject(timestamp),
       markerType: markerTypeCharToObject(markerTypeChar),
