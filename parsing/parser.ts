@@ -4,7 +4,7 @@ import { lineHandlers } from "./line_handlers"
 
 // initial state
 
-const initialParseState = {
+const initialParseState: ParseState = {
   data: {
     soundFile: {},
     markers: {

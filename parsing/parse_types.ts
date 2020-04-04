@@ -9,7 +9,11 @@ export type NumSubdividionsData = {
 export type LabelInfo = null | { label: string; labelIsAutoNamed: boolean }
 
 export interface ParseData {
-  soundFile: any // TODO
+  soundFile: {
+    filename?: string
+    filePath?: string
+    audioDurationInSeconds?: number
+  }
   markers: {
     list: Array<{
       timestamp: { string: string; hours: number; minutes: number; seconds: number }
@@ -17,7 +21,10 @@ export interface ParseData {
       label: LabelInfo
       numSubdivisionsBetweenThisAndNextMarker: NumSubdividionsData
     }>
-    autonumbering: any // TODO
+    autonumbering: {
+      byMarkerType: { section?: boolean; measure?: boolean; beat?: boolean }
+      numberContinuously?: boolean
+    }
   }
 }
 

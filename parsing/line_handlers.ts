@@ -47,7 +47,7 @@ function handleSoundFileInfo(line: string, currentState: ParseState): ParseState
     _key,
     fileType1,
     fileType2,
-    _unknown1,
+    _unknown1, // maybe number of audio channels, meaning stereo or mono
     _unknown2,
     bitrate,
     _unknown3,
@@ -55,7 +55,7 @@ function handleSoundFileInfo(line: string, currentState: ParseState): ParseState
   ] = splitLineIntoParts(line)
 
   return produce(currentState, (draftState) => {
-    draftState.data.soundFile.audioDurationInSeconds = audioDurationInSeconds
+    draftState.data.soundFile.audioDurationInSeconds = parseFloat(audioDurationInSeconds)
   })
 }
 

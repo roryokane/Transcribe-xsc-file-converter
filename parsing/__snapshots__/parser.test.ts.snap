@@ -133,7 +133,7 @@ Object {
     ],
   },
   "soundFile": Object {
-    "audioDurationInSeconds": "5.511837",
+    "audioDurationInSeconds": 5.511837,
     "filePath": "/Users/roryokane/Music/iTunes/iTunes Music/Music/Unknown Artist/Unknown Album/Windows ME Startup.mp3",
     "filename": "Windows ME Startup.mp3",
   },
