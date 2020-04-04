@@ -8,7 +8,7 @@ Converts [Transcribe!] v7’s proprietary `.xsc` files, which contain annotation
 
 There are not yet any programs that can natively understand the JSON data output by this program. The goal of the JSON output is to be clear and well-structured enough that it will be easy for you, the user, to convert the JSON to the format you need.
 
-[Transcribe!]: https://www.seventhstring.com/xscribe/overview.html
+[transcribe!]: https://www.seventhstring.com/xscribe/overview.html
 [swinger.py]: https://github.com/echonest/remix/blob/master/examples/swinger/swinger.py
 
 ## Installation and usage
@@ -37,7 +37,7 @@ Say you have a file `Windows ME Startup.xsc` that annotates a 5.5-second sound f
 
 If you opened that `.xsc` file with a text editor, you would see that it contains text whose meaning can be guessed at but not fully understood:
 
-~~~
+```
 Transcribe! for Macintosh document. Version 6089.00
 Transcribe!,Macintosh OS-X,8,50,7,S,0
 
@@ -81,11 +81,11 @@ L,18,0,0,0,,White,
 L,19,0,0,0,,White,
 L,20,0,0,0,,White,
 SectionEnd,Loops
-~~~
+```
 
 If you pass that `.xsc` file to this program, this program will output this thoroughly-labeled, easy-to-process JSON <sub>(output from the latest version may be different)</sub>:
 
-~~~json
+```json
 {
   "soundFile": {
     "filename": "Windows ME Startup.mp3",
@@ -213,7 +213,7 @@ If you pass that `.xsc` file to this program, this program will output this thor
     }
   }
 }
-~~~
+```
 
 ## Extracting the parts of the output you care about
 
@@ -221,13 +221,13 @@ The output JSON is verbose and somewhat redundant on purpose, for the sake of be
 
 For example, to get only the timestamp string and the label string of each marker in the file:
 
-~~~sh
-cat convertedTranscribeFile.json | jq '[{timestamp: .markers.list[].timestamp.string, label: .markers.list[].label}]' 
-~~~
+```sh
+cat convertedTranscribeFile.json | jq '[{timestamp: .markers.list[].timestamp.string, label: .markers.list[].label}]'
+```
 
 Example output:
 
-~~~json
+```json
 [
   {
     "timestamp": "0:00:00.167",
@@ -243,7 +243,7 @@ Example output:
     "label": null
   }
 ]
-~~~
+```
 
 The interactive tool at https://jqplay.org/ can help you experiment with `jq` filters.
 
