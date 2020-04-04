@@ -18,7 +18,7 @@ function parseSectionEnd(line: string, currentState: ParseState): ParseState {
       draftState.currentSection = null
     })
   } else {
-    throw new Error(`end of a section “${sectionName}” that was not known to have started`)
+    throw new Error(`end of a section “${sectionName}” that was not known to have began`)
   }
 }
 
