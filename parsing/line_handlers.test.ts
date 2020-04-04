@@ -1,9 +1,9 @@
-import { lineHandlers } from "./line_handlers"
+import { lineParsers } from "./line_parsers"
 import { initialParseState } from "./initial_parse_state"
 
 test("a B line can be parsed", () => {
   const initialState = { ...initialParseState, currentSection: "Markers" }
-  const newState = lineHandlers.B("B,176400,1,,0,0:00:04.000", initialState)
+  const newState = lineParsers.B("B,176400,1,,0,0:00:04.000", initialState)
   expect(newState.data.markers.list).toEqual([
     {
       label: null,

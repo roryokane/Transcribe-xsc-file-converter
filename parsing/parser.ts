@@ -1,7 +1,7 @@
 import { splitIntoLines, splitLineIntoParts, getKeyOfLine, lineIsBlank } from "./lex"
 import { ParseData } from "./parse_types"
 import { initialParseState } from "./initial_parse_state"
-import { lineHandlers } from "./line_handlers"
+import { lineParsers } from "./line_parsers"
 
 function warnIfUnknownVersion(versionLine: string): void {
   if (!versionLine.startsWith("Transcribe!,")) {
@@ -27,9 +27,9 @@ function parse(transcribeFileContents: string): ParseData {
     if (lineIsBlank(line)) continue
 
     const lineKey = getKeyOfLine(line)
-    const lineHandler = lineHandlers[lineKey]
-    if (lineHandler) {
-      parseState = lineHandler(line, parseState)
+    const lineParser = lineParsers[lineKey]
+    if (lineParser) {
+      parseState = lineParser(line, parseState)
     }
   }
 

@@ -2,16 +2,16 @@ import produce from "immer"
 import { splitLineIntoParts } from "./lex"
 import { MarkerType, NumSubdividionsData, LabelInfo, ParseState } from "./parse_types"
 
-// section handlers
+// section delimiter line parsers
 
-function handleSectionStart(line: string, currentState: ParseState): ParseState {
+function parseSectionStart(line: string, currentState: ParseState): ParseState {
   const [_key, sectionName] = splitLineIntoParts(line)
   return produce(currentState, (draftState) => {
     draftState.currentSection = sectionName
   })
 }
 
-function handleSectionEnd(line: string, currentState: ParseState): ParseState {
+function parseSectionEnd(line: string, currentState: ParseState): ParseState {
   const [_key, sectionName] = splitLineIntoParts(line)
   if (currentState.currentSection === sectionName) {
     return produce(currentState, (draftState) => {
@@ -22,7 +22,7 @@ function handleSectionEnd(line: string, currentState: ParseState): ParseState {
   }
 }
 
-// line handlers
+// field line parsers
 
 function assertCurrentSection(expectedSection: string, currentState: ParseState): void {
   if (currentState.currentSection !== expectedSection) {
@@ -30,7 +30,7 @@ function assertCurrentSection(expectedSection: string, currentState: ParseState)
   }
 }
 
-function handleSoundFileName(line: string, currentState: ParseState): ParseState {
+function parseSoundFileName(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
 
   const [_key, filename, _operatingSystemForSomeReason, filePath] = splitLineIntoParts(line)
@@ -41,7 +41,7 @@ function handleSoundFileName(line: string, currentState: ParseState): ParseState
   })
 }
 
-function handleSoundFileInfo(line: string, currentState: ParseState): ParseState {
+function parseSoundFileInfo(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
   const [
     _key,
@@ -59,7 +59,7 @@ function handleSoundFileInfo(line: string, currentState: ParseState): ParseState
   })
 }
 
-function handleMarkerNumberContinuously(line: string, currentState: ParseState): ParseState {
+function parseMarkerNumberContinuously(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
 
   const [_key, numberContinuouslyNumStr] = splitLineIntoParts(line)
@@ -72,7 +72,7 @@ function handleMarkerNumberContinuously(line: string, currentState: ParseState):
   })
 }
 
-function handleMarkerAutoSection(line: string, currentState: ParseState): ParseState {
+function parseMarkerAutoSection(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
 
   const [_key, autoSectionStr] = splitLineIntoParts(line)
@@ -83,7 +83,7 @@ function handleMarkerAutoSection(line: string, currentState: ParseState): ParseS
   })
 }
 
-function handleMarkerAutoMeasure(line: string, currentState: ParseState): ParseState {
+function parseMarkerAutoMeasure(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
 
   const [_key, autoMeasureStr] = splitLineIntoParts(line)
@@ -94,7 +94,7 @@ function handleMarkerAutoMeasure(line: string, currentState: ParseState): ParseS
   })
 }
 
-function handleMarkerAutoBeat(line: string, currentState: ParseState): ParseState {
+function parseMarkerAutoBeat(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
 
   const [_key, autoBeatStr] = splitLineIntoParts(line)
@@ -105,7 +105,7 @@ function handleMarkerAutoBeat(line: string, currentState: ParseState): ParseStat
   })
 }
 
-// only used in handleMarker
+// only used in parseMarker
 function numSubdivisionsStringToObject(numSubdivisionsStr: string): NumSubdividionsData {
   const numSubdivisionsValue = parseInt(numSubdivisionsStr, 10)
 
@@ -124,7 +124,7 @@ function numSubdivisionsStringToObject(numSubdivisionsStr: string): NumSubdividi
   }
 }
 
-// only used in handleMarker
+// only used in parseMarker
 function timestampToObject(timestampStr: string) {
   const [hours, minutes, seconds] = timestampStr.split(":")
   return {
@@ -135,7 +135,7 @@ function timestampToObject(timestampStr: string) {
   }
 }
 
-// only used in handleMarker
+// only used in parseMarker
 const markerTypeDetailsFromChar = {
   S: { name: "section", relativeScope: 3 },
   M: { name: "measure", relativeScope: 2 },
@@ -145,7 +145,7 @@ function markerTypeCharToObject(markerTypeChar: string) {
   return markerTypeDetailsFromChar[markerTypeChar]
 }
 
-// only used in handleMarker
+// only used in parseMarker
 function labelInfoToObjectOrNull(labelStr: string, labelIsAutoNamedStr: string): LabelInfo {
   const labelIsAutoNamed = labelIsAutoNamedStr === "1" ? true : false
   if (labelIsAutoNamed && labelStr === "") {
@@ -158,7 +158,7 @@ function labelInfoToObjectOrNull(labelStr: string, labelIsAutoNamedStr: string):
   }
 }
 
-function handleMarker(line: string, currentState: ParseState): ParseState {
+function parseMarker(line: string, currentState: ParseState): ParseState {
   const [
     markerTypeChar,
     _frameOrByteOrSampleOrSomething, // this is (seconds_elapsed * 44.1) for one test file. This is 1/1000 times of the “sampling rate” of that audio file, 44,100 Hz. Therefore, this value means ???
@@ -180,19 +180,19 @@ function handleMarker(line: string, currentState: ParseState): ParseState {
   })
 }
 
-export const lineHandlers = {
-  // sections
-  SectionStart: handleSectionStart,
-  SectionEnd: handleSectionEnd,
-  // in the Main section
-  SoundFileName: handleSoundFileName,
-  SoundFileInfo: handleSoundFileInfo,
-  MarkerNumberContinuously: handleMarkerNumberContinuously,
-  MarkerAutoSection: handleMarkerAutoSection,
-  MarkerAutoMeasure: handleMarkerAutoMeasure,
-  MarkerAutoBeat: handleMarkerAutoBeat,
-  // in the Markers section
-  S: handleMarker,
-  M: handleMarker,
-  B: handleMarker,
+export const lineParsers = {
+  // lines that define sections
+  SectionStart: parseSectionStart,
+  SectionEnd: parseSectionEnd,
+  // lines for fields in the Main section
+  SoundFileName: parseSoundFileName,
+  SoundFileInfo: parseSoundFileInfo,
+  MarkerNumberContinuously: parseMarkerNumberContinuously,
+  MarkerAutoSection: parseMarkerAutoSection,
+  MarkerAutoMeasure: parseMarkerAutoMeasure,
+  MarkerAutoBeat: parseMarkerAutoBeat,
+  // lines for fields in the Markers section
+  S: parseMarker,
+  M: parseMarker,
+  B: parseMarker,
 }
