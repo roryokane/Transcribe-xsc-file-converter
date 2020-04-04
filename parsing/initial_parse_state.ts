@@ -1,4 +1,4 @@
-import { ParseState } from "./parse_types"
+import { ParseState } from "./types"
 
 export const initialParseState: ParseState = {
   data: {

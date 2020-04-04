@@ -1,6 +1,6 @@
 import produce from "immer"
 import { splitLineIntoParts } from "./lex"
-import { ParseState } from "./parse_types"
+import { ParseState } from "./types"
 import { assertCurrentSection } from "./line_parser_helpers"
 import { parseMarker } from "./line_parser_for_Marker_line"
 

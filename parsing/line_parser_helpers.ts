@@ -1,4 +1,4 @@
-import { ParseState } from "./parse_types"
+import { ParseState } from "./types"
 
 export function assertCurrentSection(expectedSection: string, currentState: ParseState): void {
   if (currentState.currentSection !== expectedSection) {

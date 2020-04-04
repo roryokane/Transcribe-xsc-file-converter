@@ -1,6 +1,6 @@
 import produce from "immer"
 import { splitLineIntoParts } from "./lex"
-import { NumSubdividionsData, LabelInfo, ParseState } from "./parse_types"
+import { NumSubdividionsData, LabelInfo, ParseState } from "./types"
 import { assertCurrentSection } from "./line_parser_helpers"
 
 export function parseMarker(line: string, currentState: ParseState): ParseState {
