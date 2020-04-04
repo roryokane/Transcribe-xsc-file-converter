@@ -1,6 +1,8 @@
 import produce from "immer"
 import { splitLineIntoParts } from "./lex"
-import { MarkerType, NumSubdividionsData, LabelInfo, ParseState } from "./parse_types"
+import { ParseState } from "./parse_types"
+import { assertCurrentSection } from "./line_parser_helpers"
+import { parseMarker } from "./line_parser_for_Marker_line"
 
 // section delimiter line parsers
 
@@ -23,14 +25,6 @@ function parseSectionEnd(line: string, currentState: ParseState): ParseState {
 }
 
 // field line parsers
-
-function assertCurrentSection(expectedSection: string, currentState: ParseState): void {
-  if (currentState.currentSection !== expectedSection) {
-    throw new Error(
-      `found a field expected to be in the ${expectedSection} section in the ${currentState.currentSection} section instead; change code to support that`
-    )
-  }
-}
 
 function parseSoundFileName(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
@@ -107,93 +101,18 @@ function parseMarkerAutoBeat(line: string, currentState: ParseState): ParseState
   })
 }
 
-// only used in parseMarker
-function numSubdivisionsStringToObject(numSubdivisionsStr: string): NumSubdividionsData {
-  const numSubdivisionsValue = parseInt(numSubdivisionsStr, 10)
-
-  if (numSubdivisionsValue === 0) {
-    return { type: "same_as_previous_marker" }
-  } else if (numSubdivisionsValue === 1) {
-    return {
-      type: "constant",
-      numSubdivisionsBetweenThisMarkerAndNext: 0,
-    }
-  } else {
-    return {
-      type: "constant",
-      numSubdivisionsBetweenThisMarkerAndNext: numSubdivisionsValue,
-    }
-  }
-}
-
-// only used in parseMarker
-function timestampToObject(timestampStr: string) {
-  const [hours, minutes, seconds] = timestampStr.split(":")
-  return {
-    string: timestampStr,
-    hours: parseInt(hours, 10),
-    minutes: parseInt(minutes, 10),
-    seconds: parseFloat(seconds),
-  }
-}
-
-// only used in parseMarker
-const markerTypeDetailsFromChar = {
-  S: { name: "section", relativeScope: 3 },
-  M: { name: "measure", relativeScope: 2 },
-  B: { name: "beat", relativeScope: 1 },
-}
-function markerTypeCharToObject(markerTypeChar: string) {
-  return markerTypeDetailsFromChar[markerTypeChar]
-}
-
-// only used in parseMarker
-function labelInfoToObjectOrNull(labelStr: string, labelIsAutoNamedStr: string): LabelInfo {
-  const labelIsAutoNamed = labelIsAutoNamedStr === "1" ? true : false
-  if (labelIsAutoNamed && labelStr === "") {
-    return null
-  } else {
-    return {
-      label: labelStr,
-      labelIsAutoNamed,
-    }
-  }
-}
-
-function parseMarker(line: string, currentState: ParseState): ParseState {
-  const [
-    markerTypeChar,
-    _frameOrByteOrSampleOrSomething, // this is (seconds_elapsed * 44.1) for one test file. This is 1/1000 times of the “sampling rate” of that audio file, 44,100 Hz. Therefore, this value means ???
-    labelIsAutoNamedStr,
-    labelStr,
-    numSubdivisionsStr,
-    timestamp,
-  ] = splitLineIntoParts(line)
-
-  assertCurrentSection("Markers", currentState)
-
-  return produce(currentState, (draftState) => {
-    draftState.data.markers.list.push({
-      timestamp: timestampToObject(timestamp),
-      markerType: markerTypeCharToObject(markerTypeChar),
-      label: labelInfoToObjectOrNull(labelStr, labelIsAutoNamedStr),
-      numSubdivisionsBetweenThisAndNextMarker: numSubdivisionsStringToObject(numSubdivisionsStr),
-    })
-  })
-}
-
 export const lineParsers = {
-  // lines that define sections
+  // parsers of lines that define sections
   SectionStart: parseSectionStart,
   SectionEnd: parseSectionEnd,
-  // lines for fields in the Main section
+  // parsers of lines for fields in the Main section
   SoundFileName: parseSoundFileName,
   SoundFileInfo: parseSoundFileInfo,
   MarkerNumberContinuously: parseMarkerNumberContinuously,
   MarkerAutoSection: parseMarkerAutoSection,
   MarkerAutoMeasure: parseMarkerAutoMeasure,
   MarkerAutoBeat: parseMarkerAutoBeat,
-  // lines for fields in the Markers section
+  // parsers of lines for fields in the Markers section
   S: parseMarker,
   M: parseMarker,
   B: parseMarker,
