@@ -1,21 +1,7 @@
 import { splitIntoLines, splitLineIntoParts, getKeyOfLine, lineIsBlank } from "./lex"
-import { MarkerType, NumSubdividionsData, LabelInfo, ParseState, ParseData } from "./parse_types"
+import { ParseData } from "./parse_types"
+import { initialParseState } from "./initial_parse_state"
 import { lineHandlers } from "./line_handlers"
-
-// initial state
-
-const initialParseState: ParseState = {
-  data: {
-    soundFile: {},
-    markers: {
-      list: [],
-      autonumbering: { byMarkerType: {} },
-    },
-  },
-  currentSection: null,
-}
-
-// general parsing logic
 
 function warnIfUnknownVersion(versionLine: string): void {
   if (!versionLine.startsWith("Transcribe!,")) {
@@ -53,5 +39,4 @@ function parse(transcribeFileContents: string): ParseData {
   return parseState.data
 }
 
-// only parse is meant to be public; the rest is exported only for tests
-export { parse, initialParseState }
+export { parse }
