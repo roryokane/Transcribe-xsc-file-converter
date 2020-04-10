@@ -1,4 +1,4 @@
-import { splitIntoLines, splitLineIntoParts, getKeyOfLine, lineIsBlank } from "./lex"
+import { splitIntoLines, getKeyOfLine, lineIsBlank } from "./lex"
 import { ParseData } from "./types"
 import { initialParseState } from "./initial_parse_state"
 import { lineParsers } from "./line_parsers"

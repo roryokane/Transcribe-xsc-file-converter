@@ -4,7 +4,7 @@ import { ParseState } from "./types"
 import { assertCurrentSection } from "./line_parser_helpers"
 import { parseMarker } from "./line_parser_for_Marker_line"
 
-// section delimiter line parsers
+// parsers of lines that define sections
 
 function parseSectionStart(line: string, currentState: ParseState): ParseState {
   const [_key, sectionName] = splitLineIntoParts(line)
@@ -24,7 +24,7 @@ function parseSectionEnd(line: string, currentState: ParseState): ParseState {
   }
 }
 
-// field line parsers
+// parsers of lines for fields in the Main section
 
 function parseSoundFileName(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
@@ -39,11 +39,12 @@ function parseSoundFileName(line: string, currentState: ParseState): ParseState 
 
 function parseSoundFileInfo(line: string, currentState: ParseState): ParseState {
   assertCurrentSection("Main", currentState)
+
   const [
     _key,
     fileType1,
     fileType2,
-    _unknown1, // maybe number of audio channels, meaning stereo or mono
+    _unknown1, // maybe number of audio channels (stereo or mono)?
     _unknown2,
     bitrate,
     _unknown3,
@@ -100,6 +101,8 @@ function parseMarkerAutoBeat(line: string, currentState: ParseState): ParseState
     draftState.data.markers.autonumbering.byMarkerType.beat = autonumberBeats
   })
 }
+
+// the mapping of line keys to parsing functions
 
 export const lineParsers = {
   // parsers of lines that define sections
