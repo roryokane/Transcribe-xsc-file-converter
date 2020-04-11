@@ -10,10 +10,14 @@
     "convert",
     "file conversion"
   ],
+  "bin": {
+    "transcribe-xsc-convert": "./index.js"
+  },
   "main": "index.js",
   "scripts": {
     "start": "ts-node index.ts",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "tsc"
   },
   "author": "Rory O’Kane",
   "license": "BlueOak-1.0.0",

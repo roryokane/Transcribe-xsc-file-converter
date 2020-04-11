@@ -3,7 +3,11 @@
 # dependencies
 /node_modules
 
-# will ignore generated .js files after I make the build system generate them
+# JavaScript generated from my TypeScript
+dist
+
+# draft tests
+tests/not used yet
 
 # misc
 .env
