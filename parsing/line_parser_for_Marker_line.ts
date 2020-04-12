@@ -53,13 +53,22 @@ function timestampToObject(timestampStr: string) {
   }
 }
 
-const markerTypeDetailsFromChar = {
+type MarkerTypeDetailsFromChar = {
+  S: { name: "section"; relativeScope: 3 }
+  M: { name: "measure"; relativeScope: 2 }
+  B: { name: "beat"; relativeScope: 1 }
+}
+const markerTypeDetailsFromChar: MarkerTypeDetailsFromChar = {
   S: { name: "section", relativeScope: 3 },
   M: { name: "measure", relativeScope: 2 },
   B: { name: "beat", relativeScope: 1 },
 }
 function markerTypeCharToObject(markerTypeChar: string) {
-  return markerTypeDetailsFromChar[markerTypeChar]
+  if (markerTypeChar === "S" || markerTypeChar === "M" || markerTypeChar === "B") {
+    return markerTypeDetailsFromChar[markerTypeChar]
+  } else {
+    throw new Error(`invalid marker type "#{markerTypeChar}" passed to markerTypeCharToObject`)
+  }
 }
 
 function labelInfoToObjectOrNull(labelStr: string, labelIsAutoNamedStr: string): LabelInfo {

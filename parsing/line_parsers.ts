@@ -1,6 +1,6 @@
 import produce from "immer"
 import { splitLineIntoParts } from "./lex"
-import { ParseState } from "./types"
+import { ParseState, LineParser } from "./types"
 import { assertCurrentSection } from "./line_parser_helpers"
 import { parseMarker } from "./line_parser_for_Marker_line"
 
@@ -104,7 +104,7 @@ function parseMarkerAutoBeat(line: string, currentState: ParseState): ParseState
 
 // the mapping of line keys to parsing functions
 
-export const lineParsers = {
+export const lineParsers: { [lineKey: string]: LineParser } = {
   // parsers of lines that define sections
   SectionStart: parseSectionStart,
   SectionEnd: parseSectionEnd,

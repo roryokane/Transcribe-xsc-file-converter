@@ -30,5 +30,7 @@ export interface ParseData {
 
 export interface ParseState {
   data: ParseData
-  currentSection: void | string
+  currentSection: null | string
 }
+
+export type LineParser = (line: string, currentState: ParseState) => ParseState
