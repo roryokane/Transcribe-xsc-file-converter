@@ -14,6 +14,7 @@
     "transcribe-xsc-convert": "./index.js"
   },
   "main": "index.js",
+  "_commented_out_type": "module",
   "scripts": {
     "start": "ts-node index.ts",
     "test": "jest",
@@ -26,7 +27,6 @@
     "immer": "^6.0.2",
     "yargs": "^15.3.1"
   },
-  "_commented_out_type": "module",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
