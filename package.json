@@ -11,9 +11,9 @@
     "file conversion"
   ],
   "bin": {
-    "transcribe-xsc-convert": "./index.js"
+    "transcribe-xsc-convert": "./dist/index.js"
   },
-  "main": "index.js",
+  "main": "./dist/index.js",
   "_commented_out_type": "module",
   "scripts": {
     "start": "ts-node index.ts",
