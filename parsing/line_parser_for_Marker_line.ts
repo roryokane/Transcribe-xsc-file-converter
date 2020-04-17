@@ -63,6 +63,7 @@ const markerTypeDetailsFromChar: MarkerTypeDetailsFromChar = {
   M: { name: "measure", relativeScope: 2 },
   B: { name: "beat", relativeScope: 1 },
 }
+// If you want to simplify the above duplication, read https://www.typescriptlang.org/docs/handbook/advanced-types.html and see if anything applies. Searches didn’t bring up anything more specific than that page.
 function markerTypeCharToObject(markerTypeChar: string) {
   if (markerTypeChar === "S" || markerTypeChar === "M" || markerTypeChar === "B") {
     return markerTypeDetailsFromChar[markerTypeChar]
