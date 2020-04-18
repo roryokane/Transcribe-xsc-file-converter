@@ -3,9 +3,13 @@ import { ParseData } from "./types"
 import { initialParseState } from "./initial_parse_state"
 import { lineParsers } from "./line_parsers"
 
+function throwNotTranscribeFileError(): never {
+  throw new Error("file does not appear to a Transcribe! file")
+}
+
 function warnIfUnknownVersion(versionLine: string): void {
   if (!versionLine.startsWith("Transcribe!,")) {
-    throw new Error("file does not appear to a Transcribe! file")
+    throwNotTranscribeFileError()
   }
 
   const knownVersions = ["Transcribe!,Macintosh OS-X,8,21,7,S,3", "Transcribe!,Macintosh OS-X,8,50,7,S,0"]
@@ -20,6 +24,12 @@ function parse(transcribeFileContents: string): ParseData {
   let parseState = { ...initialParseState }
 
   const lines = splitIntoLines(transcribeFileContents)
+  if (lines.length === 0 || (lines.length === 1 && lines[0] === "")) {
+    throw new Error("no input was provided")
+  } else if (lines.length < 2) {
+    throwNotTranscribeFileError()
+  }
+
   const versionLine = lines[1]
   warnIfUnknownVersion(versionLine)
 
