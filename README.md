@@ -1,6 +1,8 @@
 # Transcribe! `.xsc` file converter
 
-Converts [Transcribe!] v7’s proprietary `.xsc` files, which contain annotations of music, to a readable JSON format. That JSON can then be more easily processed with other tools for various audio/music applications – especially the data about section, measure, and beat markers in the sound file. Some ideas for using the marker data exposed by this tool:
+Converts [Transcribe!] v7’s proprietary `.xsc` files, which contain annotations of music, to a readable JSON format. That JSON can then be more easily processed with other tools for various audio/music applications – especially the data about section, measure, and beat markers in the sound file.
+
+Some ideas for using the marker data exposed by this tool:
 
 - Convert the marker placements into a text file that the [Audacity](https://www.audacityteam.org/) audio editor can [import](https://manual.audacityteam.org/man/importing_and_exporting_labels.html) as a [Label Track](https://manual.audacityteam.org/man/label_tracks.html).
 - Automatically create a remixed version of a track by playing only the first half of each measure.
@@ -11,29 +13,11 @@ There are not yet any programs that can natively understand the JSON data output
 [transcribe!]: https://www.seventhstring.com/xscribe/overview.html
 [swinger.py]: https://github.com/echonest/remix/blob/master/examples/swinger/swinger.py
 
-## Installation and usage
-
-Prerequisites:
-
-- You know the basics of running a program on the a command line and piping input to it.
-- [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/) are installed.
-- You are okay with receiving JSON as the output of this tool; you can massage the JSON into the format you need.
-
-Installation:
-
-1. Download the code onto your computer (I haven’t published this as a package yet). You can do this by cloning this repository with `git` or downloading its contents as a zip file with GitHub.
-1. `cd` into the directory of this source code.
-1. Run `npm install`, or `yarn` if you prefer [Yarn](https://yarnpkg.com/) to npm, to install required dependencies.
-
-Running:
-
-1. Run `npx ts-node index.ts`, or `yarn run ts-node index.ts` if you use Yarn. So far this command only converts a test file in a known place – accepting the file as input will come later.
-
 ## Example
 
 Say you have a file `Windows ME Startup.xsc` that annotates a 5.5-second sound file with markers:
 
-![Transcribe! 7 with example file “Windows ME Startup.xsc” open](./docs/screenshots/Transcribe! 7 with “Windows ME Startup.xsc” open, no shadow.png)
+![Transcribe! 7 with example file “Windows ME Startup.xsc” open](./docs/screenshots/Transcribe!%207%20with%20“Windows%20ME%20Startup.xsc”%20open,%20no%20shadow.png)
 
 If you opened that `.xsc` file with a text editor, you would see that it contains text whose meaning can be guessed at but not fully understood:
 
@@ -83,7 +67,13 @@ L,20,0,0,0,,White,
 SectionEnd,Loops
 ```
 
-If you pass that `.xsc` file to this program, this program will output this thoroughly-labeled, easy-to-process JSON <sub>(output from the latest version may be different)</sub>:
+Pass that `.xsc` file to this program with the following command in your shell:
+
+```sh
+transcribe-xsc-convert "Windows ME Startup.xsc"
+```
+
+The output will be this thoroughly-labeled, easy-to-process JSON <sub>(output from the latest version might not be identical)</sub>:
 
 ```json
 {
@@ -215,7 +205,28 @@ If you pass that `.xsc` file to this program, this program will output this thor
 }
 ```
 
-## Extracting the parts of the output you care about
+## Installation and usage
+
+### Prerequisites
+
+- For your computer:
+  - [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/) are installed.
+    - Optional: If [Yarn](https://yarnpkg.com/) is installed, you can use `yarn` commands instead of `npm` and `npx` commands.
+- For you, the user:
+  - You know the basics of running a program on the a command line and piping input to it.
+  - You are okay with receiving JSON as the output of this tool; you can massage the JSON into the format you need.
+
+### Installation
+
+Run `npm install --global transcribe-xsc-file-converter` (or `yarn global add transcribe-xsc-file-converter`).
+
+### Usage
+
+Run `transcribe-xsc-convert file-to-convert.xsc` to convert the file contents to a generic JSON format and print that JSON to stdout. `file-to-convert.xsc` should be the path to your own `.xsc` file.
+
+To see more supported arguments, run `transcribe-xsc-convert --help`.
+
+## Tip for extracting the parts of the output you care about
 
 The output JSON is verbose and somewhat redundant on purpose, for the sake of being easy to interpret without having to consult a separate documentation file. If you want to slim the resulting JSON down to only the fields you care about, you can pass the JSON through the [`jq`][jq] tool.
 
@@ -248,3 +259,19 @@ Example output:
 The interactive tool at https://jqplay.org/ can help you experiment with `jq` filters.
 
 [jq]: https://stedolan.github.io/jq/
+
+## For developers: running this tool from its source code
+
+### Installation from source code
+
+Set up your environment like any other Git repo containing an npm package:
+
+1. Download the code onto your computer. You can do this by cloning this repository with `git` or downloading its contents as a zip file using GitHub’s interface.
+1. `cd` into the directory of this source code.
+1. Run `npm install` (or `yarn`) to install required dependencies.
+
+### Running from source code
+
+Run `npm start file-to-convert.xsc` (or `yarn start file-to-convert.xsc`). `file-to-convert.xsc` should be the path to your own `.xsc` file.
+
+See the `scripts` key in `package.json` for other commands you can run.
