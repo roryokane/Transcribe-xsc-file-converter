@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+// The above shebang line is meant for the compiled index.js. It won’t work for index.ts.
+
 import * as yargs from "yargs"
 import { parse } from "./parsing/parser"
 import { parseNodeProcessArgv } from "./cli_arg_parsing"
