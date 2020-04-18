@@ -1,5 +1,0 @@
-# docs: https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
-# The presence of this file makes npm not include the .gitignore file.
-# That’s what we want, because we want to not check dist/ into git, but we do want to publish dist/.
-
-tests/not used yet

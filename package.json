@@ -15,11 +15,17 @@
   },
   "main": "./dist/parsing/parser.ts",
   "_commented_out_type": "module",
+  "files": [
+    "dist/",
+    "docs/",
+    "tests/",
+    "!tests/not used yet/"
+  ],
   "scripts": {
     "start": "ts-node index.ts",
     "test": "jest",
-    "prepack": "tsc && git stash push --include-untracked",
-    "postpack": "git stash pop --index"
+    "prepack": "tsc",
+    "clean": "trash dist/"
   },
   "author": "Rory O’Kane",
   "license": "BlueOak-1.0.0",
