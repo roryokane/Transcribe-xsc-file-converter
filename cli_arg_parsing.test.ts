@@ -1,32 +1,41 @@
 import { parseArgv } from "./cli_arg_parsing"
 
+function parseArgvInTestMode(argv: Array<string>) {
+  return parseArgv(argv, { outputAndExitOnError: false })
+}
+
 test.skip("rejects too many file arguments", () => {
   expect(() => {
-    parseArgv(["file1.xsc", "file2.xsc"])
+    parseArgv(["file1.xsc", "file2.xsc"], { outputAndExitOnError: false })
   }).toThrow()
 })
 
 test.skip("rejects unknown format", () => {
   expect(() => {
-    parseArgv(["--format", "transcribe_version_999"])
+    parseArgv(["--format", "transcribe_version_999"], { outputAndExitOnError: false })
   }).toThrow()
 })
 
-test.skip("accepts one file", () => {
-  expect(parseArgv(["some file with spaces.xsc"])).toEqual({}) // TODO
-  // expect(() => {
-  //   parseArgv(["some file with spaces.xsc"])
-  // }).not.toThrow()
+test("accepts one file", () => {
+  expect(parseArgv(["some file with spaces.xsc"], { outputAndExitOnError: false })).toEqual({
+    inputSource: {
+      filePath: "some file with spaces.xsc",
+      type: "file",
+    },
+    outputFormat: "generic",
+  })
 })
 
-test.skip("interprets no files as stdin", () => {
-  expect(() => {
-    parseArgv([])
-  }).not.toThrow()
+test("interprets no files as stdin", () => {
+  expect(parseArgv([], { outputAndExitOnError: false })).toEqual({
+    inputSource: { type: "stdin" },
+    outputFormat: "generic",
+  })
 })
 
-test.skip("interprets - as stdin", () => {
-  expect(() => {
-    parseArgv(["-"])
-  }).not.toThrow()
+test("interprets - as stdin", () => {
+  expect(parseArgv(["-"], { outputAndExitOnError: false })).toEqual({
+    inputSource: { type: "stdin" },
+    outputFormat: "generic",
+  })
 })
