@@ -13,12 +13,13 @@
   "bin": {
     "transcribe-xsc-convert": "./dist/index.js"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/parsing/parser.ts",
   "_commented_out_type": "module",
   "scripts": {
     "start": "ts-node index.ts",
     "test": "jest",
-    "prepublish": "tsc"
+    "prepack": "tsc && git stash push --include-untracked",
+    "postpack": "git stash pop --index"
   },
   "author": "Rory O’Kane",
   "license": "BlueOak-1.0.0",
