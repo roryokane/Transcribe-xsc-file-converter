@@ -39,7 +39,7 @@ export function parseCleanArgv(
     )
     .option("format", {
       alias: "f",
-      choices: ["generic", "audacity_label_track"],
+      choices: ["generic", "audacity_label_track", "debug"],
       default: "generic",
       description: "Data format to output",
     })

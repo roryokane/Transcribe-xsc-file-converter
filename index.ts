@@ -33,12 +33,11 @@ fileContentsPromise
   .then((testFileContents) => {
     const parsed = parse(testFileContents)
 
-    if (true) {
-      // debug output
+    if (outputFormat === "debug") {
       console.error("Output JSON (but in JS syntax):")
       console.dir(parsed, { depth: null, colors: true })
     } else {
-      // real output
+      // output for outputFormat === "generic"
       console.log(JSON.stringify(parsed, null, 2))
     }
   })
