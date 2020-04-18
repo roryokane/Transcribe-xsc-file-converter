@@ -1,7 +1,7 @@
-import { parseArgv } from "./cli_arg_parsing"
+import { parseCleanArgv } from "./cli_arg_parsing"
 
 function parseArgvInTestMode(argv: Array<string>) {
-  return parseArgv(argv, { outputAndExitOnError: false })
+  return parseCleanArgv(argv, { outputAndExitOnError: false })
 }
 
 test("rejects too many file arguments", () => {

@@ -10,9 +10,20 @@ function chooseInputSource(filePaths: Array<string>): InputSource {
   }
 }
 
-// Now that I extracted this function `parseArgv`, is this testable by Jest? Can it catch the errors/exit for bad arguments without stopping the whole test?
-export function parseArgv(
-  argv: Array<string>,
+/**
+ * Parse command-line arguments and return an object describing parameters of the requested file conversion. If there is an error in the arguments, an error message will be printed and the program will exit unless the parameter `options.outputAndExitOnError` is false. Also, an error in the argument might cause an error to be thrown, depending on how the Yargs library works.
+ * @param processArgv Command-line arguments straight from `process.argv`, meaning the first two elements should be `process.execPath` and the path to the JavaScript file being executed.
+ * @param options
+ */
+export function parseNodeProcessArgv(
+  processArgv: Array<string>,
+  options: { outputAndExitOnError: boolean } = { outputAndExitOnError: true }
+) {
+  return parseCleanArgv(processArgv.slice(2), options)
+}
+
+export function parseCleanArgv(
+  cleanArgv: Array<string>,
   options: { outputAndExitOnError: boolean } = { outputAndExitOnError: true }
 ) {
   // yargs.reset() is needed to make multiple `yargs` calls in a single program, e.g. in tests, work independently.
@@ -48,21 +59,13 @@ export function parseArgv(
 
   let yargsArgv
   if (options.outputAndExitOnError) {
-    yargsArgv = yargsParser.parse(argv)
+    yargsArgv = yargsParser.parse(cleanArgv)
   } else {
-    yargsArgv = yargsParser.parse(argv, (err: Error | undefined, _argv: Object, _output: string) => {
+    yargsArgv = yargsParser.parse(cleanArgv, (err: Error | undefined, _argv: Object, _output: string) => {
       if (err) throw err
     })
   }
 
-  if (yargsArgv.format === "audacity_label_track") {
-    // TODO parse as generic JS object, then convert that to Audacity’s tab-delimited text format
-    console.error("Sorry, we don’t support converting to that format yet.")
-    process.exit(1)
-  } else {
-    // convert to generic JSON format
-
-    const inputSource = chooseInputSource(yargsArgv._)
-    return { inputSource, outputFormat: yargsArgv.format }
-  }
+  const inputSource = chooseInputSource(yargsArgv._)
+  return { inputSource, outputFormat: yargsArgv.format }
 }
