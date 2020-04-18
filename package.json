@@ -22,7 +22,7 @@
     "!tests/not used yet/"
   ],
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node src/index.ts",
     "test": "jest",
     "prepack": "tsc",
     "clean": "trash dist/"
