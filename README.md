@@ -73,137 +73,73 @@ Pass that `.xsc` file to this program with the following command in your shell:
 transcribe-xsc-convert "Windows ME Startup.xsc"
 ```
 
-The output will be this thoroughly-labeled, easy-to-process JSON <sub>(output from the latest version might not be identical)</sub>:
+The output will be thoroughly-labeled, easy-to-process JSON like this:
 
 ```json
 {
   "soundFile": {
     "filename": "Windows ME Startup.mp3",
     "filePath": "/Users/roryokane/Music/iTunes/iTunes Music/Music/Unknown Artist/Unknown Album/Windows ME Startup.mp3",
-    "audioDurationInSeconds": "5.511837"
+    "audioDurationInSeconds": 5.511837
   },
   "markers": {
     "list": [
       {
-        "timestamp": {
-          "string": "0:00:00.167",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 0.167
-        },
-        "markerType": {
-          "name": "section",
-          "relativeScope": 3
-        },
-        "label": "A1",
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "timestamp": { "string": "0:00:00.167", "hours": 0, "minutes": 0, "seconds": 0.167 },
+        "markerType": { "name": "section", "relativeScope": 3 },
+        "label": { "label": "A1", "labelIsAutoNamed": true },
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": {
-          "string": "0:00:01.039",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 1.039
-        },
-        "markerType": {
-          "name": "beat",
-          "relativeScope": 1
-        },
+        "timestamp": { "string": "0:00:01.039", "hours": 0, "minutes": 0, "seconds": 1.039 },
+        "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": {
-          "string": "0:00:01.961",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 1.961
-        },
-        "markerType": {
-          "name": "measure",
-          "relativeScope": 2
-        },
-        "label": "A2",
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "timestamp": { "string": "0:00:01.961", "hours": 0, "minutes": 0, "seconds": 1.961 },
+        "markerType": { "name": "measure", "relativeScope": 2 },
+        "label": { "label": "A2", "labelIsAutoNamed": true },
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": {
-          "string": "0:00:02.678",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 2.678
-        },
-        "markerType": {
-          "name": "beat",
-          "relativeScope": 1
-        },
+        "timestamp": { "string": "0:00:02.678", "hours": 0, "minutes": 0, "seconds": 2.678 },
+        "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": {
-          "string": "0:00:03.343",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 3.343
-        },
-        "markerType": {
-          "name": "beat",
-          "relativeScope": 1
-        },
+        "timestamp": { "string": "0:00:03.343", "hours": 0, "minutes": 0, "seconds": 3.343 },
+        "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": {
-          "string": "0:00:04.000",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 4
-        },
-        "markerType": {
-          "name": "beat",
-          "relativeScope": 1
-        },
+        "timestamp": { "string": "0:00:04.000", "hours": 0, "minutes": 0, "seconds": 4 },
+        "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": {
-          "string": "0:00:04.637",
-          "hours": 0,
-          "minutes": 0,
-          "seconds": 4.637
-        },
-        "markerType": {
-          "name": "beat",
-          "relativeScope": 1
-        },
+        "timestamp": { "string": "0:00:04.637", "hours": 0, "minutes": 0, "seconds": 4.637 },
+        "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
-        "numSubdivisionsBetweenThisAndNextMarker": {
-          "type": "same_as_previous_marker"
-        }
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       }
     ],
     "autonumbering": {
-      "numberContinuously": true,
-      "autoSectionBool": false
+      "byMarkerType": {
+        "section": true,
+        "measure": true,
+        "beat": false
+      },
+      "numberContinuously": true
     }
   }
 }
 ```
+
+(The preceding example JSON has been hand-reformatted for readability and might not exactly match the structure of JSON output by the current version of the program.)
 
 ## Installation and usage
 
