@@ -1,12 +1,20 @@
 # Transcribe! `.xsc` file converter
 
-Converts [Transcribe!] v7’s proprietary `.xsc` files, which contain annotations of music, to a readable JSON format. That JSON can then be more easily processed with other tools for various audio/music applications – especially the data about section, measure, and beat markers in the sound file.
+This tool converts Transcribe! v7’s proprietary `.xsc` files, which contain annotations of music, to a readable JSON format. That JSON can then be more easily processed with other tools for various music-related purposes – especially the timestamps of section, measure, and beat markers in the sound file.
+
+## Background and purpose
+
+[Transcribe!] is commercial software by Seventh String Software (not affiliated) that aids in [music transcription](<https://en.wikipedia.org/wiki/Transcription_(music)>) by letting you play and annotate audio. Transcribe!’s official description:
+
+> The Transcribe! application is an assistant for people who want to work out a piece of music from a recording, in order to write it out, or play it themselves, or both. It doesn’t do the transcribing for you, but it is essentially a specialised player program which is optimised for the purpose of transcription. It has many transcription-specific features not found on conventional music players.
+
+After you open a piece of music in Transcribe! and manually annotate it with markers, Transcribe! lets you save this data in an `.xsc` file. The purpose of this Transcribe! `.xsc` file converter is to **get your data out of your saved `.xsc` files** and into other programs.
 
 Some ideas for using the marker data exposed by this tool:
 
 - Convert the marker placements into a text file that the [Audacity](https://www.audacityteam.org/) audio editor can [import](https://manual.audacityteam.org/man/importing_and_exporting_labels.html) as a [Label Track](https://manual.audacityteam.org/man/label_tracks.html).
 - Automatically create a remixed version of a track by playing only the first half of each measure.
-- Automatically create a swing-time version of a track by slowing down the first half of each measure and speeding up the last half. (like `swinger.py`, but with your manually-entered beats instead of the tool’s guesses at where the beats are.)
+- Automatically create a swing-time version of a track by slowing down the first half of each measure and speeding up the last half. ([`swinger.py`][swinger.py] does time-stretching like this but uses a service that tries to auto-detect where the beats are; you could adapt it to use your manually-entered beats from your `.xsc` files.)
 
 There are not yet any programs that can natively understand the JSON data output by this program. The goal of the JSON output is to be clear and well-structured enough that it will be easy for you, the user, to convert the JSON to the format you need.
 
@@ -154,13 +162,31 @@ The output will be thoroughly-labeled, easy-to-process JSON like this:
 
 ### Installation
 
-Run `npm install --global transcribe-xsc-file-converter` (or `yarn global add transcribe-xsc-file-converter`).
+```sh
+npm install --global transcribe-xsc-file-converter
+```
+
+Or if you prefer Yarn:
+
+```sh
+yarn global add transcribe-xsc-file-converter
+```
 
 ### Usage
 
-Run `transcribe-xsc-convert file-to-convert.xsc` to convert the file contents to a generic JSON format and print that JSON to stdout. `file-to-convert.xsc` should be the path to your own `.xsc` file.
+Basic usage:
 
-To see more supported arguments, run `transcribe-xsc-convert --help`.
+```sh
+transcribe-xsc-convert file-to-convert.xsc
+```
+
+This will convert the file contents to a generic JSON format and print that JSON to stdout. `file-to-convert.xsc` should be the path to your own `.xsc` file.
+
+To see all supported arguments:
+
+```
+transcribe-xsc-convert --help
+```
 
 ## Tip for extracting the parts of the output you care about
 
@@ -202,12 +228,16 @@ The interactive tool at https://jqplay.org/ can help you experiment with `jq` fi
 
 Set up your environment like any other Git repo containing an npm package:
 
-1. Download the code onto your computer. You can do this by cloning this repository with `git` or downloading its contents as a zip file using GitHub’s interface.
+1. Download the code onto your computer, e.g. with `git clone`.
 1. `cd` into the directory of this source code.
 1. Run `npm install` (or `yarn`) to install required dependencies.
 
 ### Running from source code
 
-Run `npm start file-to-convert.xsc` (or `yarn start file-to-convert.xsc`). `file-to-convert.xsc` should be the path to your own `.xsc` file.
+```sh
+npm start file-to-convert.xsc
+```
 
-See the `scripts` key in `package.json` for other commands you can run.
+`file-to-convert.xsc` should be the path to your own `.xsc` file. If you prefer Yarn, use`yarn start file-to-convert.xsc` instead.
+
+See the `scripts` key in `package.json` for other scripts you can run.
