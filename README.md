@@ -155,7 +155,6 @@ The output will be thoroughly-labeled, easy-to-process JSON like this:
 
 - For your computer:
   - [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/) are installed.
-    - Optional: If [Yarn](https://yarnpkg.com/) is installed, you can use `yarn` commands instead of `npm` and `npx` commands.
 - For you, the user:
   - You know the basics of running a program on the a command line and piping input to it.
   - You are okay with receiving JSON as the output of this tool; you can massage the JSON into the format you need.
@@ -164,12 +163,6 @@ The output will be thoroughly-labeled, easy-to-process JSON like this:
 
 ```sh
 npm install --global transcribe-xsc-file-converter
-```
-
-Or if you prefer Yarn:
-
-```sh
-yarn global add transcribe-xsc-file-converter
 ```
 
 ### Usage
