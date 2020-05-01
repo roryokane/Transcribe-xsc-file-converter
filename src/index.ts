@@ -36,15 +36,12 @@ fileContentsPromise
         fail(err.name + ": " + err.message)
       }
     }
+    if (parsed == undefined) fail("somehow, parsing failed without throwing an error")
 
     if (outputFormat === "debug") {
       console.error("Output JSON (but in JS syntax):")
       console.dir(parsed, { depth: null, colors: true })
-    }
-
-    if (parsed == undefined) fail("somehow, parsing failed without throwing an error")
-
-    if (outputFormat === "generic") {
+    } else if (outputFormat === "generic") {
       console.log(JSON.stringify(parsed, null, 2))
     } else {
       // output for outputFormat === "audacity_label_track"
