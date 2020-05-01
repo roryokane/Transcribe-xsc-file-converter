@@ -1,12 +1,13 @@
-import { ParseData, TimestampAndParts } from "./parsing/types"
+import { ParseData, TimestampWithPreparsedParts } from "./parsing/types"
 
 // reference links:
 // Label Track file format details: https://manual.audacityteam.org/man/importing_and_exporting_labels.html
 // about Label Tracks in Audacity: https://manual.audacityteam.org/man/label_tracks.html
 // about Audacity: https://www.audacityteam.org/
 
-function timestampToSeconds(timestampData: TimestampAndParts): number {
-  return timestampData.hoursPart * (60 * 60) + timestampData.minutesPart * 60 + timestampData.secondsPart
+function timestampToSeconds(timestampData: TimestampWithPreparsedParts): number {
+  const { numericParts } = timestampData
+  return numericParts.hoursPart * (60 * 60) + numericParts.minutesPart * 60 + numericParts.secondsPart
 }
 
 export function toAudacityLabelTrackFormat(parseData: ParseData): string {

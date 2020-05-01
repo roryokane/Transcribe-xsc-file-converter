@@ -7,7 +7,10 @@ export type NumSubdividionsData = {
   numSubdivisionsBetweenThisMarkerAndNext?: number
 }
 export type LabelInfo = null | { name: string; isAutoNamed: boolean }
-export type TimestampAndParts = { string: string; hoursPart: number; minutesPart: number; secondsPart: number }
+export type TimestampWithPreparsedParts = {
+  string: string
+  numericParts: { hoursPart: number; minutesPart: number; secondsPart: number }
+}
 
 export interface ParseData {
   soundFile: {
@@ -17,7 +20,7 @@ export interface ParseData {
   }
   markers: {
     list: Array<{
-      timestamp: TimestampAndParts
+      timestamp: TimestampWithPreparsedParts
       markerType: MarkerType
       label: LabelInfo
       numSubdivisionsBetweenThisAndNextMarker: NumSubdividionsData

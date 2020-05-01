@@ -25,9 +25,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 0.167,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 0.167,
+          },
           "string": "0:00:00.167",
         },
       },
@@ -41,9 +43,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 1.039,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 1.039,
+          },
           "string": "0:00:01.039",
         },
       },
@@ -60,9 +64,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 1.961,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 1.961,
+          },
           "string": "0:00:01.961",
         },
       },
@@ -76,9 +82,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 2.678,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 2.678,
+          },
           "string": "0:00:02.678",
         },
       },
@@ -92,9 +100,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 3.343,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 3.343,
+          },
           "string": "0:00:03.343",
         },
       },
@@ -108,9 +118,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 4,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 4,
+          },
           "string": "0:00:04.000",
         },
       },
@@ -124,9 +136,11 @@ Object {
           "type": "same_as_previous_marker",
         },
         "timestamp": Object {
-          "hoursPart": 0,
-          "minutesPart": 0,
-          "secondsPart": 4.637,
+          "numericParts": Object {
+            "hoursPart": 0,
+            "minutesPart": 0,
+            "secondsPart": 4.637,
+          },
           "string": "0:00:04.637",
         },
       },

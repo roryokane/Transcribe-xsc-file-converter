@@ -15,10 +15,12 @@ test("a B line can be parsed", () => {
         type: "same_as_previous_marker",
       },
       timestamp: {
-        hoursPart: 0,
-        minutesPart: 0,
-        secondsPart: 4,
         string: "0:00:04.000",
+        numericParts: {
+          hoursPart: 0,
+          minutesPart: 0,
+          secondsPart: 4,
+        },
       },
     },
   ])

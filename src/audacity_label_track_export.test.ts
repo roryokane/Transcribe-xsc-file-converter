@@ -25,9 +25,11 @@ test("parsed .xsc data with a single late, unlabeled timestamp can be converted 
           markerType: { name: "beat", relativeScope: 1 },
           numSubdivisionsBetweenThisAndNextMarker: { type: "same_as_previous_marker" },
           timestamp: {
-            hoursPart: 1,
-            minutesPart: 59,
-            secondsPart: 4.157,
+            numericParts: {
+              hoursPart: 1,
+              minutesPart: 59,
+              secondsPart: 4.157,
+            },
             string: "1:59:04.157",
           },
         },
@@ -52,9 +54,11 @@ test("parsed .xsc data with a single labeled timestamp can be converted to Audac
           markerType: { name: "beat", relativeScope: 1 },
           numSubdivisionsBetweenThisAndNextMarker: { type: "same_as_previous_marker" },
           timestamp: {
-            hoursPart: 0,
-            minutesPart: 0,
-            secondsPart: 3,
+            numericParts: {
+              hoursPart: 0,
+              minutesPart: 0,
+              secondsPart: 3,
+            },
             string: "0:00:03.000",
           },
         },
