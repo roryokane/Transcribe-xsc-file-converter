@@ -14,8 +14,8 @@ Object {
     "list": Array [
       Object {
         "label": Object {
-          "label": "A1",
-          "labelIsAutoNamed": true,
+          "isAutoNamed": true,
+          "name": "A1",
         },
         "markerType": Object {
           "name": "section",
@@ -49,8 +49,8 @@ Object {
       },
       Object {
         "label": Object {
-          "label": "A2",
-          "labelIsAutoNamed": true,
+          "isAutoNamed": true,
+          "name": "A2",
         },
         "markerType": Object {
           "name": "measure",

@@ -8,7 +8,7 @@ export function parseMarker(line: string, currentState: ParseState): ParseState 
     markerTypeChar,
     _frameOrByteOrSampleOrSomething, // This is (seconds_elapsed * 44.1) for one test file. 44.1 is the “sampling rate” of that audio file, 44,100 Hz, divided by 1000. Therefore, this value means ???
     labelIsAutoNamedStr,
-    labelStr,
+    labelName,
     numSubdivisionsStr,
     timestamp,
   ] = splitLineIntoParts(line)
@@ -19,7 +19,7 @@ export function parseMarker(line: string, currentState: ParseState): ParseState 
     draftState.data.markers.list.push({
       timestamp: timestampToObject(timestamp),
       markerType: markerTypeCharToObject(markerTypeChar),
-      label: labelInfoToObjectOrNull(labelStr, labelIsAutoNamedStr),
+      label: labelInfoToObjectOrNull(labelName, labelIsAutoNamedStr),
       numSubdivisionsBetweenThisAndNextMarker: numSubdivisionsStringToObject(numSubdivisionsStr),
     })
   })
@@ -72,14 +72,11 @@ function markerTypeCharToObject(markerTypeChar: string) {
   }
 }
 
-function labelInfoToObjectOrNull(labelStr: string, labelIsAutoNamedStr: string): LabelInfo {
-  const labelIsAutoNamed = labelIsAutoNamedStr === "1" ? true : false
-  if (labelIsAutoNamed && labelStr === "") {
+function labelInfoToObjectOrNull(name: string, isAutoNamedStr: string): LabelInfo {
+  const isAutoNamed = isAutoNamedStr === "1" ? true : false
+  if (isAutoNamed && name === "") {
     return null
   } else {
-    return {
-      label: labelStr,
-      labelIsAutoNamed,
-    }
+    return { name, isAutoNamed }
   }
 }

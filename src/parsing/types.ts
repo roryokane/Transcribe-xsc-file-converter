@@ -6,7 +6,7 @@ export type NumSubdividionsData = {
   type: "same_as_previous_marker" | "constant"
   numSubdivisionsBetweenThisMarkerAndNext?: number
 }
-export type LabelInfo = null | { label: string; labelIsAutoNamed: boolean }
+export type LabelInfo = null | { name: string; isAutoNamed: boolean }
 export type TimestampAndParts = { string: string; hoursPart: number; minutesPart: number; secondsPart: number }
 
 export interface ParseData {

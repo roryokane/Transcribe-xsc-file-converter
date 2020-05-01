@@ -23,8 +23,8 @@ export function toAudacityLabelTrackFormat(parseData: ParseData): string {
 
     // When importing markers without labels, Audacity supports either line format: "1\t1" (missing tab-separated label field) or "1\t1\t" (label field present but empty).
     // I chose to export the second format, a present but empty label field, because it’s more likely to avoid bugs in hypothetical other programs that understand Audacity’s label track format.
-    let audacityLabel = item.label ? item.label.label : ""
-    lineParts.push(audacityLabel)
+    let labelName = item.label ? item.label.name : ""
+    lineParts.push(labelName)
 
     outputLines.push(lineParts.join("\t"))
   })

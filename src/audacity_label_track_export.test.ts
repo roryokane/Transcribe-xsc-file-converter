@@ -46,8 +46,8 @@ test("parsed .xsc data with a single labeled timestamp can be converted to Audac
       list: [
         {
           label: {
-            label: "start of the good part",
-            labelIsAutoNamed: false,
+            name: "start of the good part",
+            isAutoNamed: false,
           },
           markerType: { name: "beat", relativeScope: 1 },
           numSubdivisionsBetweenThisAndNextMarker: { type: "same_as_previous_marker" },
