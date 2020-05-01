@@ -93,43 +93,64 @@ The output will be thoroughly-labeled, easy-to-process JSON like this:
   "markers": {
     "list": [
       {
-        "timestamp": { "string": "0:00:00.167", "hoursPart": 0, "minutesPart": 0, "secondsPart": 0.167 },
+        "timestamp": {
+          "string": "0:00:00.167",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 0.167 }
+        },
         "markerType": { "name": "section", "relativeScope": 3 },
-        "label": { "label": "A1", "labelIsAutoNamed": true },
+        "label": { "name": "A1", "isAutoNamed": true },
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": { "string": "0:00:01.039", "hoursPart": 0, "minutesPart": 0, "secondsPart": 1.039 },
+        "timestamp": {
+          "string": "0:00:01.039",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 1.039 }
+        },
         "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": { "string": "0:00:01.961", "hoursPart": 0, "minutesPart": 0, "secondsPart": 1.961 },
+        "timestamp": {
+          "string": "0:00:01.961",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 1.961 }
+        },
         "markerType": { "name": "measure", "relativeScope": 2 },
-        "label": { "label": "A2", "labelIsAutoNamed": true },
+        "label": { "name": "A2", "isAutoNamed": true },
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": { "string": "0:00:02.678", "hoursPart": 0, "minutesPart": 0, "secondsPart": 2.678 },
+        "timestamp": {
+          "string": "0:00:02.678",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 2.678 }
+        },
         "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": { "string": "0:00:03.343", "hoursPart": 0, "minutesPart": 0, "secondsPart": 3.343 },
+        "timestamp": {
+          "string": "0:00:03.343",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 3.343 }
+        },
         "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": { "string": "0:00:04.000", "hoursPart": 0, "minutesPart": 0, "secondsPart": 4 },
+        "timestamp": {
+          "string": "0:00:04.000",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 4 }
+        },
         "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
       },
       {
-        "timestamp": { "string": "0:00:04.637", "hoursPart": 0, "minutesPart": 0, "secondsPart": 4.637 },
+        "timestamp": {
+          "string": "0:00:04.637",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 4.637 }
+        },
         "markerType": { "name": "beat", "relativeScope": 1 },
         "label": null,
         "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
