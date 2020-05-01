@@ -1,6 +1,6 @@
 import produce from "immer"
 import { splitLineIntoParts } from "./lex"
-import { NumSubdividionsData, LabelInfo, ParseState } from "./types"
+import { NumSubdividionsData, LabelInfo, ParseState, TimestampAndParts } from "./types"
 import { assertCurrentSection } from "./line_parser_helpers"
 
 export function parseMarker(line: string, currentState: ParseState): ParseState {
@@ -43,13 +43,13 @@ function numSubdivisionsStringToObject(numSubdivisionsStr: string): NumSubdividi
   }
 }
 
-function timestampToObject(timestampStr: string) {
+function timestampToObject(timestampStr: string): TimestampAndParts {
   const [hours, minutes, seconds] = timestampStr.split(":")
   return {
     string: timestampStr,
-    hours: parseInt(hours, 10),
-    minutes: parseInt(minutes, 10),
-    seconds: parseFloat(seconds),
+    hoursPart: parseInt(hours, 10),
+    minutesPart: parseInt(minutes, 10),
+    secondsPart: parseFloat(seconds),
   }
 }
 
