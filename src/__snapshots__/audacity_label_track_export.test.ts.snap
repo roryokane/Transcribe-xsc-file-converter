@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the file ‘Windows ME Startup.xsc’ can be converted to Audacity Label Track format 1`] = `
+"0.167	0.167	A1
+1.039	1.039	
+1.961	1.961	A2
+2.678	2.678	
+3.343	3.343	
+4	4	
+4.637	4.637	
+"
+`;

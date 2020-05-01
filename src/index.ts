@@ -4,6 +4,7 @@
 import * as yargs from "yargs"
 import { parse } from "./parsing/parser"
 import { parseNodeProcessArgv } from "./cli_arg_parsing"
+import { toAudacityLabelTrackFormat } from "./audacity_label_track_export"
 import { readAllFromSource, InputSource } from "./io_utils"
 
 function fail(errorMessage: string, exitCode: number = 1): never {
@@ -12,13 +13,6 @@ function fail(errorMessage: string, exitCode: number = 1): never {
 }
 
 const { inputSource, outputFormat } = parseNodeProcessArgv(process.argv)
-
-if (outputFormat === "audacity_label_track") {
-  // TODO parse as generic JS object, then convert that to Audacity’s tab-delimited text format
-  fail("Sorry, we don’t support converting to that format yet.")
-}
-
-// convert to generic JSON format:
 
 let fileContentsPromise
 // change a `false` to `true` for debug inputs
@@ -46,9 +40,16 @@ fileContentsPromise
     if (outputFormat === "debug") {
       console.error("Output JSON (but in JS syntax):")
       console.dir(parsed, { depth: null, colors: true })
-    } else {
-      // output for outputFormat === "generic"
+    }
+
+    if (parsed == undefined) fail("somehow, parsing failed without throwing an error")
+
+    if (outputFormat === "generic") {
       console.log(JSON.stringify(parsed, null, 2))
+    } else {
+      // output for outputFormat === "audacity_label_track"
+      // use process.stdout.write instead of console.log to avoid adding a trailing newline to an empty file
+      process.stdout.write(toAudacityLabelTrackFormat(parsed))
     }
   })
   .catch((err) => {
