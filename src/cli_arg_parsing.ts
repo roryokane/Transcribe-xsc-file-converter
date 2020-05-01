@@ -31,7 +31,7 @@ export function parseCleanArgv(
   yargs.reset()
 
   const yargsParser = yargs
-    .usage("$0 [option] [file]")
+    .usage("Usage: $0 [option] [file]")
     .example("$0 myTranscribeFile.xsc", "reading input with a file argument")
     .example(
       "cat myTranscribeFile.xsc | $0 > transcribeFileData.json",
