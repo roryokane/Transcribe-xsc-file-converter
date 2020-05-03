@@ -1,4 +1,6 @@
-import * as yargs from "yargs"
+// Import from "yargs/yargs", which exports a constructor function, instead of from "yargs", which exports an already-constructed object.
+// This is necessary to make multiple `yargs.parse()` calls in a single program, e.g. in tests, work independently.
+import yargs from "yargs/yargs"
 import { InputSource } from "./io_utils"
 
 function chooseInputSource(filePaths: Array<string>): InputSource {
@@ -26,11 +28,7 @@ export function parseCleanArgv(
   cleanArgv: Array<string>,
   options: { outputAndExitOnError: boolean } = { outputAndExitOnError: true }
 ) {
-  // yargs.reset() is needed to make multiple `yargs` calls in a single program, e.g. in tests, work independently.
-  // That’s why I’m calling it even though the Yargs docs say it’s deprecated. The docs don’t say what to use instead.
-  yargs.reset()
-
-  const yargsParser = yargs
+  const yargsParser = yargs()
     .usage("Usage: $0 [option] [file]")
     .example("$0 myTranscribeFile.xsc", "reading input with a file argument")
     .example(
