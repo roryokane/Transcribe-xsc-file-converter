@@ -1,0 +1,28 @@
+{
+  "soundFile": {
+    "filename": "Windows ME Startup.mp3",
+    "filePath": "/Users/example/Music/Windows ME Startup.mp3",
+    "audioDurationInSeconds": 5.511837
+  },
+  "markers": {
+    "list": [
+      {
+        "timestamp": {
+          "string": "0:00:00.167",
+          "numericParts": { "hoursPart": 0, "minutesPart": 0, "secondsPart": 0.167 }
+        },
+        "markerType": { "name": "section", "relativeScope": 3 },
+        "label": { "name": "A1", "isAutoNamed": true },
+        "numSubdivisionsBetweenThisAndNextMarker": { "type": "same_as_previous_marker" }
+      }
+    ],
+    "autonumbering": {
+      "byMarkerType": {
+        "section": true,
+        "measure": true,
+        "beat": false
+      },
+      "numberContinuously": true
+    }
+  }
+}

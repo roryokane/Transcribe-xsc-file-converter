@@ -8,7 +8,9 @@
     "audio",
     "music",
     "convert",
-    "file conversion"
+    "file conversion",
+    "Audacity",
+    "label track"
   ],
   "bin": {
     "transcribe-xsc-convert": "./dist/index.js"
