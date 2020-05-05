@@ -242,7 +242,7 @@ The output JSON is verbose and somewhat redundant on purpose, for the sake of be
 For example, to get only the timestamp string and the label string of each marker in the file:
 
 ```sh
-cat convertedTranscribeFile.json | jq '[{timestamp: .markers.list[].timestamp.string, label: .markers.list[].label}]'
+cat convertedTranscribeFile.json | jq '[{timestamp: .markers.list[].timestamp.string, label: .markers.list[].label.name}]'
 ```
 
 Example output:
