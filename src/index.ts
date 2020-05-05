@@ -28,15 +28,7 @@ if (false) {
 
 fileContentsPromise
   .then((testFileContents) => {
-    let parsed
-    try {
-      parsed = parse(testFileContents)
-    } catch (err) {
-      if (outputFormat !== "debug") {
-        fail(err.name + ": " + err.message)
-      }
-    }
-    if (parsed == undefined) fail("somehow, parsing failed without throwing an error")
+    const parsed = parse(testFileContents)
 
     if (outputFormat === "debug") {
       console.error("Output JSON (but in JS syntax):")
@@ -50,5 +42,9 @@ fileContentsPromise
     }
   })
   .catch((err) => {
-    throw err
+    if (outputFormat === "debug") {
+      throw err
+    } else {
+      fail(err.name + ": " + err.message)
+    }
   })
