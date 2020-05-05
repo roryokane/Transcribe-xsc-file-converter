@@ -12,7 +12,11 @@ function warnIfUnknownVersion(versionLine: string): void {
     throwNotTranscribeFileError()
   }
 
-  const knownVersions = ["Transcribe!,Macintosh OS-X,8,21,7,S,3", "Transcribe!,Macintosh OS-X,8,50,7,S,0"]
+  const knownVersions = [
+    "Transcribe!,Macintosh OS-X,8,21,7,S,3",
+    "Transcribe!,Macintosh OS-X,8,50,7,S,0",
+    "Transcribe!,Macintosh OS-X,7,51,7,S,2",
+  ]
   if (!knownVersions.includes(versionLine)) {
     console.error(
       `Warning: file format has version “${versionLine}”, which not a version this program has even been tested against. Data may be wrong or missing.`
