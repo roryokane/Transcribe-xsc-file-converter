@@ -30,7 +30,6 @@
   "author": "Rory O’Kane",
   "license": "BlueOak-1.0.0",
   "dependencies": {
-    "@types/jest": "^25.1.5",
     "immer": "^6.0.2",
     "yargs": "^15.3.1"
   },
@@ -38,6 +37,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^25.1.5",
     "@types/node": "^13.9.5",
     "babel-jest": "^25.2.6",
     "jest": "^25.2.7",
