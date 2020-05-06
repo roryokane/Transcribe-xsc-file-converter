@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "jest",
+    "test": "jest src/",
     "prepack": "tsc",
     "clean": "trash dist/"
   },
