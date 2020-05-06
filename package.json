@@ -19,9 +19,7 @@
   "_commented_out_type": "module",
   "files": [
     "dist/",
-    "docs/",
-    "tests/",
-    "!tests/not used yet/"
+    "tests/"
   ],
   "scripts": {
     "start": "ts-node src/index.ts",

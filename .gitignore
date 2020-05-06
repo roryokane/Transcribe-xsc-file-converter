@@ -7,8 +7,7 @@
 dist
 
 # draft tests
-tests/not used yet
-tests/Audacity label import tests
+tests not ready for publishing
 
 # misc
 .env
