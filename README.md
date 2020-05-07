@@ -8,6 +8,15 @@ If you want to use your Transcribe! `.xsc` file’s markers in an [Audacity] pro
 
 ![diagram](./docs/diagram/diagram.png)
 
+## Table of contents
+
+- [Background: Transcribe! and `.xsc` files](#background-transcribe-and-xsc-files)
+- [Output formats](#output-formats)
+- [Example](#example)
+- [Installation and usage](#installation-and-usage)
+- [Tip for extracting the parts of the JSON you care about](#tip-for-extracting-the-parts-of-the-json-you-care-about)
+- [For developers: running this tool from its source code](#for-developers-running-this-tool-from-its-source-code)
+
 ## Background: Transcribe! and `.xsc` files
 
 [Transcribe!] is commercial software by Seventh String Software (not affiliated) that aids in [music transcription](<https://en.wikipedia.org/wiki/Transcription_(music)>) by letting you play and annotate audio. Transcribe!’s official description:
