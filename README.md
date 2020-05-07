@@ -215,9 +215,13 @@ As the earlier JSON example hopefully demonstrates, reading this program’s JSO
 
 ### Installation
 
+The [npm package][npm-package]’s name is `transcribe-xsc-file-converter`. Note that this is different from the name of the binary you run.
+
 ```sh
 npm install --global transcribe-xsc-file-converter
 ```
+
+[npm-package]: https://www.npmjs.com/package/transcribe-xsc-file-converter
 
 ### Usage
 
