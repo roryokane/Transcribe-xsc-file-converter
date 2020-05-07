@@ -12,23 +12,22 @@
     "Audacity",
     "label track"
   ],
-  "bin": {
-    "transcribe-xsc-convert": "./dist/index.js"
-  },
-  "main": "./dist/parsing/parser.ts",
-  "_commented_out_type": "module",
-  "files": [
-    "dist/",
-    "tests/"
-  ],
+  "author": "Rory O’Kane",
+  "license": "BlueOak-1.0.0",
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "jest src/",
     "prepack": "tsc",
     "clean": "trash dist/"
   },
-  "author": "Rory O’Kane",
-  "license": "BlueOak-1.0.0",
+  "bin": {
+    "transcribe-xsc-convert": "./dist/index.js"
+  },
+  "main": "./dist/parsing/parser.ts",
+  "files": [
+    "dist/",
+    "tests/"
+  ],
   "dependencies": {
     "immer": "^6.0.2",
     "yargs": "^15.3.1"
