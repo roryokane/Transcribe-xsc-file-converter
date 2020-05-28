@@ -2,7 +2,9 @@
 
 **Get your data out of your `.xsc` files.**
 
-[Transcribe!] v7’s proprietary `.xsc` files contain the user’s annotations of their music or audio files. This command-line tool, `transcribe-xsc-convert`, converts those `.xsc` files to a readable JSON format. This JSON can be more easily processed with other tools for various purposes such as music analysis. The part of the JSON you will probably find the most useful is the timestamps of section, measure, and beat markers in the sound.
+[Transcribe!] v7’s proprietary `.xsc` files contain the user’s annotations of their music or audio files. This command-line tool, `transcribe-xsc-convert`, converts those `.xsc` files to a readable JSON format.
+
+This tool’s output JSON can be processed with other tools more easily than the `.xsc` file, for purposes such as music analysis. The part of the JSON you will probably find the most useful is the timestamps of section, measure, and beat markers in the sound.
 
 If you want to use your Transcribe! `.xsc` file’s markers in an [Audacity] project, this tool also supports exporting directly to Audacity’s Label Track format.
 
@@ -218,7 +220,7 @@ As the earlier JSON example hopefully demonstrates, reading this program’s JSO
 ### Prerequisites
 
 - For your computer:
-  - [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/) are installed.
+  - [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/get-npm) are installed.
 - For you, the user:
   - You know the basics of running a program on the a command line and piping input to it.
 
