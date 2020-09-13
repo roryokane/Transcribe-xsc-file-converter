@@ -300,6 +300,6 @@ Set up your environment like any other Git repo containing an npm package:
 npm start file-to-convert.xsc
 ```
 
-`file-to-convert.xsc` should be the path to your own `.xsc` file. If you prefer Yarn, use`yarn start file-to-convert.xsc` instead.
+`file-to-convert.xsc` should be the path to your own `.xsc` file. If you prefer Yarn, use `yarn start file-to-convert.xsc` instead.
 
 See the `scripts` key in `package.json` for other scripts you can run.
